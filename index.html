@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+	<title>Number Theory Week 1</title>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hack-font@3/build/web/hack-subset.css">
+	<link rel="stylesheet" href="https://rs-math.net/beamerkiller/reveal.js/dist/reveal.css">
+	<link rel="stylesheet" href="https://rs-math.net/beamerkiller/reveal.js/plugin/highlight/monokai.css">
+	<link rel="stylesheet" href="https://rs-math.net/beamerkiller/beamerkiller.css" id="theme">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Number Theory</h1>
+				<h2>BCA Math Team Summer Lectures 2026</h2>
+				<p style="text-align: center;">Bozhan Shang</p>
+			</section>
+
+
+			<section>
+				<section data-auto-animate data-auto-animate-id="instructors">
+					<h2 data-id="instructors-title">About the Instructors</h2>
+					<h3>Bozhan Shang</h3>
+					<ul>
+						<li>Rising senior at BCA</li>
+						<li>Academy for Technology and Computer Science (ATCS)</li>
+						<li>AIME Qualifier</li>
+						<li>USACO Gold</li>
+						<li>Hobbies:
+							<ul>
+								<li>Linguistics</li>
+								<li>Learning languages</li>
+								<li>Playing piano</li>
+								<li>Volleyball</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section data-auto-animate data-auto-animate-id="instructors">
+					<h2 data-id="instructors-title">About the Instructors</h2>
+					<h3>William Kim</h3>
+					<ul>
+						<li>Rising Junior at BCA</li>
+						<li>Academy for Technology and Computer Science (ATCS)</li>
+						<li>AIME Qualifier</li>
+						<li>Favorite subject in math is Number Theory</li>
+						<li>Enjoy comp math and math team trips</li>
+						<li>Like eating chipotle</li>
+					</ul>
+				</section>
+			</section>
+
+
+			<section>
+				<h2>What is Number Theory?</h2>
+				<p>Number theory is the study of <strong>integers</strong> (represented as $\mathbb{Z}$).</p>
+				<p class="fragment" data-fragment-index="0">Topics we will cover include:</p>
+				<ul>
+					<li class="fragment" data-fragment-index="1">
+						<span class="fragment highlight-blue" data-fragment-index="9">Divisors and divisibility</span>
+					</li>
+					<li class="fragment" data-fragment-index="2">
+						<span class="fragment highlight-blue" data-fragment-index="9">gcd, lcm, and the Euclidean
+							algorithm</span>
+					</li>
+					<li class="fragment" data-fragment-index="3">Number bases (base 2, base 10, etc.)</li>
+					<li class="fragment" data-fragment-index="4">Modular arithmetic
+						<ul>
+							<li class="fragment" data-fragment-index="5">Fermat's little theorem</li>
+							<li class="fragment" data-fragment-index="6">Euler's theorem</li>
+							<li class="fragment" data-fragment-index="7">Chinese remainder theorem</li>
+						</ul>
+					</li>
+					<li class="fragment" data-fragment-index="8">Diophantine equations</li>
+				</ul>
+			</section>
+
+
+			<section>
+				<h2>Divisors</h2>
+				<p>A <strong>divisor</strong> of an integer is a number that evenly divides that integer.</p>
+				<p class="fragment" data-fragment-index="0">For example, the divisors of 6 are 1, 2, 3, and 6.</p>
+				<p class="fragment" data-fragment-index="1">The formal definition is as follows:</p>
+				<div class="fragment box" style="margin-top: 1em; margin-bottom: 1em;" data-fragment-index="2">
+					<div class="title">Definition of Divisor</div>
+					<div class="content">
+						An integer $d$ is a <strong>divisor</strong> of integer $n$
+						if there exists an integer $k$ such that $n = kd$.
+					</div>
+				</div>
+				<p class="fragment" data-fragment-index="3">We may also write $d \mid n$ (read "d divides n") to show
+					that $d$ is a divisor of $n$. </p>
+			</section>
+
+
+			<section>
+				<section data-auto-animate data-auto-animate-id="divisibility">
+					<h2 data-id="divisibility-title">Divisibility</h2>
+					<p>An integer $n$ is <strong>divisible</strong> by $d$ if $d$ is a divisor of $n$.</p>
+					<p style="text-align: center;">\[d \mid n \Leftrightarrow \text{$n$ is divisible by $d$} \]</p>
+					<p>We can also say that $n$ is a <strong>multiple</strong> of $d$.</p>
+					<p class="fragment" data-fragment-index="0">Is $30$ divisible by $2$? <span class="fragment"
+							style="margin-left: 1em; color: green;" data-fragment-index="1">$30 = 15 \cdot 2$</span>
+					</p>
+					<p class="fragment" data-fragment-index="2">Is $30$ divisible by $3$? <span class="fragment"
+							style="margin-left: 1em; color: green;" data-fragment-index="3">$10 = 10 \cdot 3$</span>
+					</p>
+					<p class="fragment" data-fragment-index="4">Is $30$ divisible by $4$? <span class="fragment"
+							style="margin-left: 1em; color: red;" data-fragment-index="5">No</span> </p>
+					<p class="fragment" data-fragment-index="6">What are the divisors of $7$?</p>
+				</section>
+				<section data-auto-animate data-auto-animate-id="divisibility">
+					<h2 data-id="divisibility-title">Divisibility</h2>
+					<p>Some useful facts about divisibility:</p>
+					<ul>
+						<li class="fragment" data-fragment-index="0">$a \mid a$ for all $a$. </li>
+						<li class="fragment" data-fragment-index="1">If $a \mid b$ and $b \mid c$ then $a \mid c$. </li>
+						<li class="fragment" data-fragment-index="2">$1 \mid a$ and $a \mid 0$ for all $a$. </li>
+						<li class="fragment" data-fragment-index="3">If $a \mid b$ then $a \mid bc$ for any $c$. </li>
+						<li class="fragment" data-fragment-index="4">If $a \mid b$ and $b \mid a$ then $a = \pm b$.
+						</li>
+						<li style="color: blue;" class="fragment" data-fragment-index="5">If $a \mid b$ and $a \mid c$
+							then $a \mid (mb + nc)$ for all $m$, $n$. </li>
+					</ul>
+				</section>
+				<section data-auto-animate data-auto-animate-id="divisibility">
+					<h2 data-id="divisibility-title">Divisibility Rules</h2>
+					<p>A number is divisible:</p>
+					<ul>
+						<li class="fragment">by <strong>2</strong> if its last digit is even.</li>
+						<li class="fragment">by <strong>3</strong> if the sum of its digits is divisible by 3.</li>
+						<li class="fragment">by <strong>4</strong> if the number formed by its last two digits is
+							divisible by 4.</li>
+						<li class="fragment">by <strong>5</strong> if its last digit is 0 or 5.</li>
+						<li class="fragment">by <strong>6</strong> if it is divisible by both 2 and 3.</li>
+						<li class="fragment">by <strong>7</strong> if twice the last digit minus the number formed by
+							the remaining digits is divisible by 7.</li>
+						<li class="fragment">by <strong>8</strong> if the number formed by its last three digits is
+							divisible by 8.</li>
+						<li class="fragment">by <strong>9</strong> if the sum of its digits is divisible by 9.</li>
+						<li class="fragment">by <strong>10</strong> if its last digit is 0.</li>
+						<li class="fragment">by <strong>11</strong> if the difference between the sum of the digits in
+							odd positions and the sum of the digits in even positions is divisible by 11.</li>
+					</ul>
+				</section>
+			</section>
+
+
+			<section>
+				<section>
+					<h2>Greatest Common Divisor</h2>
+					<p>Two numbers can share divisors! For example, $12$ and $18$ are both divisible by $1$, $2$, $3$,
+						and
+						$6$.</p>
+					<div class="fragment box" style="margin-top: 1rem; margin-bottom: 1rem;" data-fragment-index="2">
+						<div class="title">Greatest Common Divisor</div>
+						<div class="content">
+							The <strong>greatest common divisor</strong> (gcd) of two integers $a$ and $b$ is the
+							largest
+							integer that divides both $a$ and $b$. We denote this as $\gcd(a, b)$.
+						</div>
+					</div>
+					<p class="fragment" data-fragment-index="3">What is $\gcd(12, 18)$? <span class="fragment"
+							style="margin-left: 1rem; color: blue;" data-fragment-index="4">$\gcd(12, 18) = 6$</span>
+					</p>
+					<p class="fragment" data-fragment-index="5">What is $\gcd(12, 11)$? <span class="fragment"
+							style="margin-left: 1rem; color: blue;" data-fragment-index="6">$\gcd(12, 11) = 1$</span>
+					</p>
+					<p class="fragment" style="color: #ff2c2d;" data-fragment-index="7">If $\gcd(a, b) = 1$, then $a$
+						and $b$ are <strong>coprime</strong>.</p>
+
+				</section>
+				<section>
+					<h2>Least Common Multiple</h2>
+					<p>Two numbers can also share multiples! For example, $12$ and $18$ both divide $36$, $72$, $108$,
+						and so on.</p>
+					<div class="fragment box" style="margin-top: 1rem; margin-bottom: 1rem;" data-fragment-index="2">
+						<div class="title">Least Common Multiple</div>
+						<div class="content">
+							The <strong>least common multiple</strong> (lcm) of two integers $a$ and $b$ is the smallest
+							number
+							that can be evenly divided by both $a$ and $b$. We denote this as $\lcm(a, b)$.
+						</div>
+					</div>
+					<p class="fragment" data-fragment-index="3">What is $\lcm(12, 18)$? <span class="fragment"
+							style="margin-left: 1rem; color: blue;" data-fragment-index="4">$\lcm(12, 18) = 36$</span>
+					</p>
+					<p class="fragment" data-fragment-index="5">What is $\lcm(12, 11)$? <span class="fragment"
+							style="margin-left: 1rem; color: blue;" data-fragment-index="6">$\lcm(12, 11) = 132$</span>
+					</p>
+				</section>
+			</section>
+
+
+			<section>
+				<section>
+					<h2>Prime Numbers</h2>
+					<p class="fragment">Remember 7? Its only positive divisors were $1$ and $7$. </p>
+					<p class="fragment">A <strong>prime number</strong> is a natural number greater than 1 with exactly
+						two distinct positive divisors: 1 and itself.</p>
+					<div class="fragment box" style="margin-top: 1rem; margin-bottom: 1rem;">
+						<div class="title">The Fundamental Theorem of Arithmetic</div>
+						<div class="content">
+							Every integer greater than 1 is either prime or can be uniquely written as a product of
+							prime numbers.
+						</div>
+					</div>
+					<p class="fragment">For example, we can write $12 = 4 \cdot 3 = 2 \cdot 2 \cdot 3 = 2^2 \cdot 3$.
+					</p>
+					<p class="fragment">We say the <strong>prime factorization</strong> of $12$ is $2^2 \cdot 3$. </p>
+					<p class="fragment"><em>Note</em>: 1 is neither prime nor composite!</p>
+				</section>
+				<section>
+					<h2>Number of divisors</h2>
+					<p>If the prime factorization of $n$ is 
+						\[
+							n = p_1^{e_1} p_2^{e_2} \cdots p_k^{e_k},
+						\]
+						then each divisor of $n$ looks like 
+						\[
+							p_1^{b_1} p_2^{b_2} \cdots p_k^{b_k}
+						\]
+					</p>
+					<p>where each exponent $b_i$ ranges from $0$ to $e_i$. </p>
+					<p>To count the number of divisors, we multiply the number of choices for each exponent: $\boxed{(e_1 + 1)(e_2 + 1) \cdots (e_k + 1)}$.</p>
+				</section>
+				<section>
+					<h2>Sum of divisors</h2>
+					<p>We can do something similar for the sum of divisors.</p>
+					<p>Let $n$ prime factorize as </p>
+					\[
+						n = p_1^{e_1} p_2^{e_2} \cdots p_k^{e_k}.
+					\]
+					<p>
+						To sum across all possible divisors, sum across all possible exponents for each prime factor, then multiply the sums
+					together:
+					</p>
+					<div class="r-fit-text" style="text-align: center;">
+						\[
+						\boxed{(1 + p_1 + p_1^2 + \cdots + p_1^{e_1})(1 + p_2 + p_2^2 + \cdots + p_2^{e_2}) \cdots (1 + p_k + p_k^2 + \cdots
+						+ p_k^{e_k})}
+						\]
+					</div>
+				</section>
+			</section>
+
+
+			<section>
+				<h2>Computing GCD and LCM</h2>
+				<p class="fragment">Prime factorization can help us quickly compute the GCD and LCM. Suppose $a = 2^3
+					\cdot 3^2 $ and $b = 2^2 \cdot 3^4$. </p>
+				<p class="fragment">The GCD must divide both $a$ and $b$, so for each prime, you can only use as many
+					copies as the number with <strong>fewer</strong> copies has.</p>
+				<p class="fragment" style="text-align: center;">$\gcd(a, b) = 2^{\min(3, 2)} \cdot 3^{\min(2, 4)} = 2^2
+					\cdot 3^2$</p>
+				<p class="fragment">The LCM must be divisible by both $a$ and $b$, so it needs enough copies of each
+					prime to cover both numbers.</p>
+				<p class="fragment" style="text-align: center;">$\lcm(a, b) = 2^{\max(3, 2)} \cdot 3^{\max(2, 4)} = 2^3
+					\cdot 3^4$</p>
+				<p class="fragment">What is $\gcd(a, b) \cdot \lcm(a, b)$?</p>
+			</section>
+
+
+			<section>
+				<h2>Division</h2>
+				<p class="fragment">Division is not formally defined in the integers, since the result of dividing two
+					integers is not always an integer.</p>
+				<p class="fragment">However, we can formalize the concept of quotient and remainder: </p>
+				<div class="fragment box" style="margin-top: 1rem; margin-bottom: 1rem;">
+					<div class="title">Euclidean Division</div>
+					<div class="content">
+						Given two integers $a$ and $b$ with $b \neq 0$, there exist unique integers $q$ and $r$ such
+						that
+						\[
+						a = bq + r
+						\]
+						and $0 \leq r &lt; |b|$. We call $a$ the <em>dividend</em>, $b$ the <em>divisor</em>, $q$ the
+						<em>quotient</em>, and $r$ the <em>remainder</em>.
+					</div>
+				</div>
+				<p class="fragment">For example, we can "divide" 9 by 4 to get $9 = 4(2) + 1$. </p>
+			</section>
+
+
+			<section>
+				<section>
+					<h2>The Euclidean Algorithm</h2>
+					<p class="fragment">Computing the GCD using prime factorization is very hard for large numbers. </p>
+					<p class="fragment">The <strong>Euclidean Algorithm</strong> is a highly efficient method for
+						computing the GCD using only repeated subtraction (or division). </p>
+					<p class="fragment">To compute $\gcd(a, b)$: </p>
+					<ol>
+						<li class="fragment">Suppose $a > b$. Subtract $b$ from $a$ until the result is less than $b$
+							(but not negative). Let the result be $r$.</li>
+						<li class="fragment">We have $\gcd(a, b) = \gcd(b, r)$. Repeat steps 1 and 2 until one of the
+							numbers becomes 0.</li>
+						<li class="fragment">The other number is the GCD.</li>
+					</ol>
+				</section>
+				<section>
+					<h2>Example</h2>
+					<p>Suppose we want to compute $\gcd(1071, 462)$. Using the Euclidean Algorithm: </p>
+					<ol>
+						<li class="fragment">$\gcd(\textcolor{red}{1071}, \textcolor{blue}{462}) =
+							\gcd(\textcolor{red}{147}, \textcolor{blue}{462})$</li>
+						<li class="fragment">$\gcd(\textcolor{blue}{147}, \textcolor{red}{462}) =
+							\gcd(\textcolor{blue}{147}, \textcolor{red}{21})$</li>
+						<li class="fragment">$\gcd(\textcolor{red}{147}, \textcolor{blue}{21}) =
+							\gcd(\textcolor{red}{0}, \textcolor{blue}{21})$</li>
+					</ol>
+					<p class="fragment">Thus, $\gcd(1071, 462) = \boxed{21}$. </p>
+				</section>
+			</section>
+
+
+			<section>
+				<h2>Proving the Euclidean Algorithm</h2>
+				<p>Write $a = bq + r$ with $0 \leq r &lt; |b|$. Then $r = a - bq$.</p>
+				<p>Suppose a divisor $d$ satisfies $d \mid a$ and $d \mid b$. Then $d \mid (a - bq) = r$ (integer
+					combination).
+					This shows that any common divisor of $a$ and $b$ is also a divisor of $b$ and $r$.
+				</p>
+				<p>Similarly, suppose a divisor $d$ satisfies $d \mid b$ and $d \mid r$. Then $d \mid (bq + r) = a$.
+					This shows that any common divisor of $b$ and $r$ is also a divisor of $a$ and $b$.
+				</p>
+				<p>Since this argument work for any divisor $d$, the sets of common divisors of $(a, b)$ and $(b, r)$
+					are the same.</p>
+				<p>If the sets are the same, their greatest elements (GCD) must also be the same. This proves $\gcd(a,
+					b) = \gcd(b, r)$. </p>
+			</section>
+			</section>
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="dist/plugin/notes.js"></script>
+	<script src="dist/plugin/markdown.js"></script>
+	<script src="dist/plugin/highlight.js"></script>
+	<script src="dist/plugin/math.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			katex: {
+				macros: {
+					"\\lcm": "\\operatorname{lcm}",
+					// "\\min": "\\operatorname{min}",
+					// "\\max": "\\operatorname{max}",
+				}
+			},
+			
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX],
+		});
+
+		Reveal.configure({ pdfSeparateFragments: false });
+	</script>
+</body>
+
+</html>
