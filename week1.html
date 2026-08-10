@@ -109,7 +109,7 @@
 							style="margin-left: 1em; color: green;" data-fragment-index="1">$30 = 15 \cdot 2$</span>
 					</p>
 					<p class="fragment" data-fragment-index="2">Is $30$ divisible by $3$? <span class="fragment"
-							style="margin-left: 1em; color: green;" data-fragment-index="3">$10 = 10 \cdot 3$</span>
+							style="margin-left: 1em; color: green;" data-fragment-index="3">$30 = 10 \cdot 3$</span>
 					</p>
 					<p class="fragment" data-fragment-index="4">Is $30$ divisible by $4$? <span class="fragment"
 							style="margin-left: 1em; color: red;" data-fragment-index="5">No</span> </p>
@@ -321,15 +321,15 @@
 
 			<section>
 				<h2>Proving the Euclidean Algorithm</h2>
-				<p>Write $a = bq + r$ with $0 \leq r &lt; |b|$. Then $r = a - bq$.</p>
-				<p>Suppose a divisor $d$ satisfies $d \mid a$ and $d \mid b$. Then $d \mid (a - bq) = r$ (integer
+				<p class="fragment">Write $a = bq + r$ with $0 \leq r &lt; |b|$. Then $r = a - bq$.</p>
+				<p class="fragment">Suppose a divisor $d$ satisfies $d \mid a$ and $d \mid b$. Then $d \mid (a - bq) = r$ (integer
 					combination).
 					This shows that any common divisor of $a$ and $b$ is also a divisor of $b$ and $r$.
 				</p>
-				<p>Similarly, suppose a divisor $d$ satisfies $d \mid b$ and $d \mid r$. Then $d \mid (bq + r) = a$.
+				<p class="fragment">Similarly, suppose a divisor $d$ satisfies $d \mid b$ and $d \mid r$. Then $d \mid (bq + r) = a$.
 					This shows that any common divisor of $b$ and $r$ is also a divisor of $a$ and $b$.
 				</p>
-				<p>Since this argument work for any divisor $d$, the sets of common divisors of $(a, b)$ and $(b, r)$
+				<p class="fragment">Since this argument work for any divisor $d$, the sets of common divisors of $(a, b)$ and $(b, r)$
 					are the same.</p>
 				<p>If the sets are the same, their greatest elements (GCD) must also be the same. This proves $\gcd(a,
 					b) = \gcd(b, r)$. </p>
