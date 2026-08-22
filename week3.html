@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+	<title>Number Theory Week 3</title>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hack-font@3/build/web/hack-subset.css">
+	<link rel="stylesheet" href="https://rs-math.net/beamerkiller/reveal.js/dist/reveal.css">
+	<link rel="stylesheet" href="https://rs-math.net/beamerkiller/reveal.js/plugin/highlight/monokai.css">
+	<link rel="stylesheet" href="https://rs-math.net/beamerkiller/beamerkiller.css" id="theme">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Number Theory</h1>
+				<h2>BCA Math Team Summer Lectures 2026</h2>
+				<p style="text-align: center;"><strong>Week 3</strong></p> <br />
+				<p style="text-align: center;">Bozhan Shang</p>
+			</section>
+
+
+			<section>
+				<section data-auto-animate data-auto-animate-id="bezout">
+					<h2 data-id="bezout-title">Bézout's Identity</h2>
+					<div class="fragment box" style="margin-top: 1rem; margin-bottom: 1rem;">
+						<div class="title">Bézout's Identity</div>
+						<div class="content">
+							Let $a$ and $b$ be integers with greatest common divisor $d$.
+							Then there exist integers $x$ and $y$ such that
+							\[
+							ax + by = d.
+							\]
+							The integers $x$ and $y$ are called <strong>Bézout coefficients</strong>.
+						</div>
+					</div>
+					<p class="fragment">Find integers $x$ and $y$ such that $5x + 7y = 1$. <span class="fragment"
+							style="margin-left: 1rem; color: blue;">$5(3) + 7(-2) = 1$.</span></p>
+					<p class="fragment">Can you find any other solutions?</p>
+				</section>
+				<section data-auto-animate data-auto-animate-id="bezout">
+					<h2 data-id="bezout-title">Proof of Bézout's Identity</h2>
+					<p class="fragment">Let set $S = \{ax + by \mid x, y \in \mathbb{Z} \text{ and } ax+by>0 \}$.
+						Intuitively, this is the set of all positive integers that are an integer combination of $a$ and
+						$b$.
+					</p>
+					<p class="fragment">This set is non-empty, since it contains either $a$ or $-a$. Hence a minimum
+						element $d=as+bt$ exists. </p>
+					<p class="fragment">We wish to prove $d = \gcd(a, b)$ (think about why this is desirable).</p>
+					<p class="fragment">To do this, we need to prove two things:
+					<ol>
+						<li class="fragment">$d \mid a$ and $d \mid b$</li>
+						<li class="fragment">Any other common divisor $c$ satisfies $c \leq d$. </li>
+					</ol>
+					</p>
+				</section>
+				<section data-auto-animate data-auto-animate-id="bezout">
+					<h2 data-id="bezout-title">Proof of Bézout's Identity</h2>
+					<p class="fragment">Apply the division algorithm to $a$ by $d$:
+						\[
+						a = qd + r, \quad 0 \leq r &lt; d.
+						\]
+					</p>
+					<p class="fragment">Rearranging the equation to solve for $r$:
+						$$
+						\begin{aligned}
+						r & = a - qd \\
+						& = a - q(as+bt) \\
+						& = a(1-qs) + b(-qt)
+						\end{aligned}
+						$$
+					</p>
+					<p class="fragment">This shows $r$ is an integer combination of $a$ and $b$, so $r \in S$ or $r =
+						0$.</p>
+					<p class="fragment">But $d$ is the minimum element of $S$ and $r &lt; d$, so $r$ cannot be in $S$.
+						Hence $r = 0$, implying $d \mid a$.
+				</section>
+				<section data-auto-animate data-auto-animate-id="bezout">
+					<h2 data-id="bezout-title">Proof of Bézout's Identity</h2>
+					<p>A similar argument shows that $d \mid b$ as well. Thus $d \mid a$ and $d \mid b$.
+					</p>
+					<p class="fragment">Now, let $c$ be any common divisor of $a$ and $b$. Then $a = cx$ and $b = cy$
+						for some integers $x$ and $y$.
+						$$
+						\begin{aligned}
+						d & = as + bt \\
+						& = cxs + cyt \\
+						& = c(xs + yt)
+						\end{aligned}
+						$$
+					</p>
+					<p class="fragment">This shows $c \mid d$. As $d > 0$, we have $c \leq d$. </p>
+				</section>
+			</section>
+
+
+			<section>
+				<section data-auto-animate data-auto-animate-id="inverses">
+					<h2 data-id="inverses-title">Inverses (again)</h2>
+					<p>We learned about this result (without proof) last class:</p>
+					<div class="fragment box" style="margin-top: 1rem; margin-bottom: 1rem;">
+						<div class="title">Existence of Inverses</div>
+						<div class="content">
+							An integer $a$ has a multiplicative inverse modulo $m$ if and only if $\gcd(a, m) = 1$.
+						</div>
+					</div>
+					<p class="fragment">We are now in a position to prove both directions!</p>
+					<p class="fragment">1. Inverse exists implies $\gcd(a, m) = 1$. </p>
+					<p class="fragment">This implies $a^{-1}$ exists, with $aa^{-1} \equiv 1 \pmod{m}$. Thus there
+						exists an integer $k$ s.t. $aa^{-1} = 1 + km \implies aa^{-1} - km = 1$</p>
+					<p class="fragment">Let $d = \gcd(a, m)$. Since $d \mid a$ and $d \mid m$, by the fact that gcd
+						divides integer combination, we have $d \mid 1$. Therefore $d = 1$. </p>
+				</section>
+
+				<section data-auto-animate data-auto-animate-id="inverses">
+					<h2 data-id="inverses-title">Inverses (again)</h2>
+					<p class="fragment">2. $\gcd(a, m) = 1$ implies inverse exists. </p>
+					<p class="fragment">By Bézout's identity, there exist integers $x$ and $y$ such that $ax + my = 1$.
+						Taking mod $m$ on both sides, we get $ax \equiv 1 \pmod{m}$, so $x$ is the multiplicative
+						inverse of $a$ modulo $m$. </p>
+					<p class="fragment">We have now succesfully proven both directions! </p>
+					<p class="fragment"><em>Note</em>: The fact that we can find inverses by computing the Bézout
+						coefficients will allow us to efficiently compute modular inverses. </p>
+				</section>
+			</section>
+
+
+			<section>
+				<section data-auto-animate data-auto-animate-id="crt">
+					<h2 data-id="crt-title">Chinese Remainder Theorem</h2>
+					<p class="fragment">You have probably heard of systems of equations before. We can also have systems
+						of modular congruences:
+						$$
+						\begin{aligned}
+						x &\equiv a_1 \pmod{m_1} \\
+						x &\equiv a_2 \pmod{m_2} \\
+						&\vdots \\
+						x &\equiv a_n \pmod{m_n}
+						\end{aligned}
+						$$
+					</p>
+					<p class="fragment">The <strong>Chinese Remainder Theorem</strong> guarantees that if the moduli
+						$m_1, m_2, \dots, m_n$ are pairwise coprime, then the system has a unique solution modulo $m_1
+						m_2 \cdots m_n$.</p>
+				</section>
+				<section data-auto-animate data-auto-animate-id="crt">
+					<h2 data-id="crt-title">Chinese Remainder Theorem</h2>
+					<p>For small systems, we can solve them by just guess and check:
+						\[
+						\begin{aligned}
+						x &\equiv 2 \pmod{3} \\
+						x &\equiv 1 \pmod{4}
+						\end{aligned}
+						\]
+					</p>
+					<p class="fragment">What is the unique solution to this system? <span class="fragment"
+							style="margin-left: 1rem; color: blue;">$x \equiv 5 \pmod{12}$.</span> </p>
+					<p class="fragment">For larger systems, we can use the method of successive substitutions to find a
+						solution systematically:
+						\[
+						\begin{aligned}
+						x &\equiv 1 \pmod{3} \\
+						x &\equiv 4 \pmod{5} \\
+						x &\equiv 6 \pmod{7}
+						\end{aligned}
+						\]
+					</p>
+					<p class="fragment">Answer: <span class="fragment" style="margin-left: 1rem; color: blue;">$x \equiv
+							34 \pmod{105}$ </span></p>
+				</section>
+
+				<section data-auto-animate data-auto-animate-id="crt">
+					<h2 data-id="crt-title">Chinese Remainder Theorem</h2>
+					<p>What are the last two digits of $49^{19}$?</p>
+					<p class="fragment">We want to compute $x \equiv 49^{19} \pmod{100}$. Since $100 = 4 \cdot 25$ and
+						$\gcd(4, 25) = 1$,
+						the Chinese Remainder Theorem tells us that the solution for $x$ corresponds to solving this
+						system:
+						$$
+						\begin{aligned}
+						x &\equiv 49^{19} \pmod{4} \\
+						x &\equiv 49^{19} \pmod{25}
+						\end{aligned}
+						$$
+					</p>
+					<p class="fragment">Answer: <span class="fragment" style="margin-left: 1rem; color: blue;">$x \equiv
+							49 \pmod{100}$
+						</span></p>
+				</section>
+
+				<section data-auto-animate data-auto-animate-id="crt">
+					<h2 data-id="crt-title">Chinese Remainder Theorem</h2>
+					<p>Show that there exist $99$ consecutive integers, each of which is divisible by a perfect cube
+						greater than $1$. </p>
+					<p class="fragment"> Consider this system of congruences:
+						$$
+						\begin{aligned}
+						x & \equiv -1 \pmod{p_1^3} \\
+						x & \equiv -2 \pmod{p_2^3} \\
+						& \vdots \\
+						x & \equiv -99 \pmod{p_{99}^3}
+						\end{aligned}
+						$$
+						where $p_i$ is the $i$-th prime number.
+					</p>
+					<p class="fragment">Since primes are coprime to each other, CRT guarantees this system has a
+						solution.
+						The $99$ integers are $\{x+1, x+2, \ldots, x+99\}$.
+					</p>
+				</section>
+			</section>
+
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="dist/plugin/notes.js"></script>
+	<script src="dist/plugin/markdown.js"></script>
+	<script src="dist/plugin/highlight.js"></script>
+	<script src="dist/plugin/math.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			katex: {
+				macros: {
+					"\\lcm": "\\operatorname{lcm}",
+					// "\\min": "\\operatorname{min}",
+					// "\\max": "\\operatorname{max}",
+				}
+			},
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX],
+		});
+
+		Reveal.configure({ pdfSeparateFragments: false });
+	</script>
+</body>
+
+</html>
